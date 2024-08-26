@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 各要素の取得
-    const submitButton = document.getElementById('submit');
-    const messageElement = document.getElementById('message');
-    const answerInput = document.getElementById('answer');
-    const countdownElement = document.getElementById('countdown');
-    const questionElement = document.getElementById('question');
-    const scoreElement = document.getElementById('score');
-    const restartButton = document.getElementById('restart');
+    const submitButton = document.getElementById('submit');  // jsp内のid="submit"から取得
+    const messageElement = document.getElementById('message');  // jsp内のid="message"から取得
+    const answerInput = document.getElementById('answer');  // jsp内のid="answer"から取得
+    const countdownElement = document.getElementById('countdown');  // jsp内のid="countdown"から取得
+    const questionElement = document.getElementById('question');  // jsp内のid="question"から取得
+    const scoreElement = document.getElementById('score');  // jsp内のid="score"から取得
+    const restartButton = document.getElementById('restart');  // jsp内のid="restart"から取得
 
     // クイズの問題と答えの定義
     const questions = [
@@ -16,11 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // さらに問題を追加可能
     ];
 
-    let currentQuestionIndex = parseInt(localStorage.getItem('currentQuestionIndex')) || 0;
-    let timeLeft = parseInt(localStorage.getItem('timeLeft')) || 10;
-    let score = parseInt(localStorage.getItem('score')) || 0;
-    let countdownInterval;
-    let correctAnswersCount = parseInt(localStorage.getItem('correctAnswersCount')) || 0;
+    // ローカルストレージからのデータの取得と初期値の設定
+    let currentQuestionIndex = parseInt(localStorage.getItem('currentQuestionIndex')) || 0; // 現在の質問のインデックス
+    let timeLeft = parseInt(localStorage.getItem('timeLeft')) || 10; // 残り時間
+    let score = parseInt(localStorage.getItem('score')) || 0; // スコア
+    let countdownInterval; // タイマーのID
+    let correctAnswersCount = parseInt(localStorage.getItem('correctAnswersCount')) || 0; // 正解数
     let remainingQuestions = [...questions]; // 残りの問題のリスト
 
     // ゲーム開始までのカウントダウンを設定
@@ -70,6 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
             updateCountdown(); // 初期表示
         } else {
             // 全ての問題が終了した場合の処理
+            clearInterval(countdownInterval); // タイマーを停止
+            countdownElement.style.display = 'none'; // タイマーを非表示にする
+
             if (correctAnswersCount === questions.length) {
                 questionElement.innerHTML = `★★おめでとうございます！★★<br>★★全問正解です！★★`;
             } else {
@@ -83,17 +87,23 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // クイズのリセット関数
-    const resetQuiz = () => {
-        localStorage.removeItem('currentQuestionIndex');
-        localStorage.removeItem('timeLeft');
-        localStorage.removeItem('score');
-        localStorage.removeItem('correctAnswersCount');
-        currentQuestionIndex = 0;
-        timeLeft = 10;
-        score = 0;
-        correctAnswersCount = 0;
-        remainingQuestions = [...questions]; // 問題をリセット
-    };
+	const resetQuiz = () => {
+    // ローカルストレージからクイズに関連する全てのデータを削除
+    	localStorage.removeItem('currentQuestionIndex'); // 現在の質問のインデックス
+    	localStorage.removeItem('timeLeft'); // 残り時間
+    	localStorage.removeItem('score'); // スコア
+    	localStorage.removeItem('correctAnswersCount'); // 正解数
+
+    // クイズの状態を初期化
+    	currentQuestionIndex = 0; // 現在の質問のインデックスをリセット（最初の質問に戻す）
+    	timeLeft = 10; // 残り時間を初期値の10秒にリセット
+    	score = 0; // スコアを初期値の0にリセット
+    	correctAnswersCount = 0; // 正解数を初期値の0にリセット
+    
+    // 問題リストを初期状態に戻す
+    	remainingQuestions = [...questions]; // 全ての問題を含むリストにリセット
+	};
+
 
     // ゲーム開始カウントダウンの実行
     startCountdown();

@@ -21,8 +21,8 @@
 		<button type="submit">「クイズ」10秒で答えてスコアを狙え！</button>
 	</form>	
 	
-	<form action="start.jsp">
-		<button type="submit">他のゲーム</button>
+	<form action="ishikawaQuiz.jsp">
+		<button type="submit">石川県って...</button>
 	</form>
 	
 	<form action="start.jsp">

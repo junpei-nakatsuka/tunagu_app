@@ -12,13 +12,13 @@
 	<h2>ゲームを始めるにはログインしてください</h2>
 	<form action="Login" method="post">
 		
-		<!-- ログインするための名前入力欄。ここのname="name"がgetParameter("name")に結びつく -->
+		<!-- ログインするための名前入力欄。ここのname="inputName"がServletのgetParameter("inputName")に結びつく -->
 		<label for="name">名前:</label>
-		<input type="text" name="name" id="name" required><br>
+		<input type="text" name="inputName" id="name" required><br>
 		
-		<!-- ログインするためのPASS入力欄。ここのname="pass"がgetParameter("pass")に結びつく -->
+		<!-- ログインするためのPASS入力欄。ここのname="inputPass"がServletのgetParameter("inputPass")に結びつく -->
 		<label for="pass">パスワード:</label>
-		<input type="password" name="pass" id="pass" required>
+		<input type="password" name="inputPass" id="pass" required>
 		
 		<c:if test="${not empty passError}">
             <span style="color: red;">${passError}</span>

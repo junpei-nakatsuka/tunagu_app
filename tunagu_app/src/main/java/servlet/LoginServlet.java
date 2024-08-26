@@ -19,24 +19,28 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         
-        //index.jspのname="name"とgetParameter("name")が結びついて、入力値を受け取っている
-        String name = request.getParameter("name");
+    	//エンコード設定。UTF-8に設定しないと日本語は文字化けして表示されちゃう
+    	request.setCharacterEncoding("UTF-8");
         
-        //index.jspのname="pass"とgetParameter("pass")が結びついて、入力値を受け取っている
-        String pass = request.getParameter("pass");
+        //index.jspのname="inputName"とgetParameter("inputName")が結びついて、入力値を受け取っている
+        String name = request.getParameter("inputName");
+        
+        //index.jspのname="inputPass"とgetParameter("inputPass")が結びついて、入力値を受け取っている
+        String pass = request.getParameter("inputPass");
 
         try {
             int intPass = Integer.parseInt(pass);
-
-            if ("ユーザー".equals(name) && intPass == 1234) {
+            
+            						//かつ				//または					//かつ
+            if (("仲塚".equals(name) && intPass == 1234) || ("ユーザー".equals(name) && intPass == 5678)) {
             	
             	HttpSession session = request.getSession();
             	
-            	//セッションに名前を保存。これによりログアウトするまで各ページでログイン時の名前を使用できる。
+            	//セッションに名前を保存。これによりログアウトするまで各ページでログイン時の名前を使いまわせる。
             	session.setAttribute("name", name);
                 
+            	//ログイン成功なので、start.jspへ遷移させる
             	RequestDispatcher dispatcher = request.getRequestDispatcher("start.jsp");
                 dispatcher.forward(request, response);
             } else {
