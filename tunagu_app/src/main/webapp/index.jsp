@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h2>ゲームを始めるにはログインしてください</h2>
-	<form action="Login" method="post">
+	<form action="Login01" method="post">
 		
 		<!-- ログインするための名前入力欄。ここのname="inputName"がServletのgetParameter("inputName")に結びつく -->
 		<label for="name">名前:</label>
@@ -30,6 +30,6 @@
 		</c:if>
 	</form>
 	<br>
-	<a href="#">新規登録はこちら</a>
+	<a href="insert.jsp">新規登録はこちら</a>
 </body>
 </html>

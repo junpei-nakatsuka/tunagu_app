@@ -1,0 +1,3 @@
+ユーザー名：hogeuser
+パスワード：hoge
+データベース名：tunagugame_db
