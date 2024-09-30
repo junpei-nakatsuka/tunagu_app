@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.question {
+    font-size: 2em;
+    text-align: center; /* テキストを中央揃え */
+    margin-bottom: auto; /* 上部の余白を自動的に調整して下に配置 */
+}
+
+/* ボタンスタイル */
+button {
+    margin: 5px; /* マージン設定 */
+    padding: 10px; /* パディング設定 */
+    font-size: 16px; /* フォントサイズ設定 */
+}
+
+/* ホバー時の効果 */
+button:hover {
+    background-color: rgb(192, 192, 192); /* ホバー時の背景色 */
+}

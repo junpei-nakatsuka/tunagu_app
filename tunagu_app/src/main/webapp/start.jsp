@@ -25,8 +25,8 @@
 		<button type="submit">石川県って...</button>
 	</form>
 	
-	<form action="start.jsp">
-		<button type="submit">他のゲーム</button>
+	<form action="matigaisagasi.jsp">
+		<button type="submit">文字間違い探し</button>
 	</form>
 	
 	<br><br>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body><p id="q" style="font-size:2em;"></p><script>
+const qa = ["天夫", "酒洒", "鳥島", "活治", "豪濠", "季李", "兎免", "失矢", "語悟"];
+const rnd = n => Math.floor(Math.random() * n);
+var q = qa[rnd(qa.length)], r = rnd(100);
+document.querySelector('#q').innerHTML = Array(100).fill(0).map((_, i) => {
+  const c = q.charAt(r != i ? 0 : 1) + ((i % 10 == 9) ? '<br>' : '')
+  return `<span id="c${i}" onclick="chk('${c}')">${c}</span>`; }).join('');
+const chk = c => { document.querySelector('#c'+r).style.color = 'red';
+  alert((c == q.charAt(1))?'正解!':'失敗'); }
+</script>
+</body>
+</html>
